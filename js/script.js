@@ -26,10 +26,13 @@ let shuffleOrder = () => {
 
 //Acende a próxima cor
 let lightColor = (element, number) => {
+   
     number = number * 500;
+    
     setTimeout(() =>{
         element.classList.add('selected')
-    }, number-250);
+    }, number-250); //Executa um código dentro do tempo
+
     setTimeout(() => {
         element.classList.remove('selected');
     });
@@ -37,7 +40,7 @@ let lightColor = (element, number) => {
 
 //Checa se os botões clicados são os mesmos da ordem gerada no jogo
 let checkOrder = () => {
-    for(let i in clickOrder){
+    for(let i in clickedOrder){
         if(clickedOrder[i] != order[i]){
             gameOver();
             break;
@@ -100,7 +103,7 @@ let playGame = () => {
 green.onclick = () => click(0);
 red.onclick = () => click(1);
 yellow.onclick = () => click(2);
-blue.onclick = () => click(4);
+blue.onclick = () => click(3);
 
 
 //Início do
