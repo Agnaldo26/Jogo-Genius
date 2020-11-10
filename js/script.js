@@ -24,6 +24,19 @@ let shuffleOrder = () => {
     }
 }
 
+// Função que retorna a cor
+let createColorElement = (color) => {
+    if(color == 0){
+        return green;
+    } else if(color == 1){
+        return red;
+    } else if(color == 2){
+        return yellow;
+    } else if(color == 3){
+        return blue;
+    }
+}
+
 //Acende a próxima cor
 let lightColor = (element, number) => {
    
@@ -36,6 +49,24 @@ let lightColor = (element, number) => {
     setTimeout(() => {
         element.classList.remove('selected');
     });
+}
+
+//Eventos de clique para as cores
+green.onclick = () => click(0);
+red.onclick = () => click(1);
+yellow.onclick = () => click(2);
+blue.onclick = () => click(3);
+
+
+//Função para o clique do usuário
+let click = (color) => {
+    clickedOrder[clickedOrder.length] = color;
+    createColorElement(color).classList.add('selected');
+
+    setTimeout(() => {
+        createColorElement(color).classList.remove('selected');
+        checkOrder();
+    },250);
 }
 
 //Checa se os botões clicados são os mesmos da ordem gerada no jogo
@@ -52,35 +83,6 @@ let checkOrder = () => {
     }
 }
 
-//Função para o clique do usuário
-let click = (color) => {
-    clickedOrder[clickedOrder.length] = color;
-    createColorElement(color).classList.add('selected');
-
-    setTimeout(() => {
-        createColorElement(color).classList.remove('selected');
-        checkOrder();
-    },250);
-}
-
-// Função que retorna a cor
-let createColorElement = (color) => {
-    if(color == 0){
-        return green;
-    } else if(color == 1){
-        return red;
-    } else if(color == 2){
-        return yellow;
-    } else if(color == 3){
-        return blue;
-    }
-}
-
-//Função para o próximo nível do jogo
-let nextLevel = () => {
-    score++;
-    shuffleOrder();
-}
 
 //Função para game over
 let gameOver = () => {
@@ -91,6 +93,14 @@ let gameOver = () => {
     playGame();
 }
 
+
+//Função para o próximo nível do jogo
+let nextLevel = () => {
+    score++;
+    shuffleOrder();
+}
+
+
 //Função de início do jogo
 let playGame = () => {
     alert('Bem vindo ao Genius! Iniciando novo jogo!');
@@ -99,12 +109,6 @@ let playGame = () => {
     nextLevel()
 }
 
-//Eventos de clique para as cores
-green.onclick = () => click(0);
-red.onclick = () => click(1);
-yellow.onclick = () => click(2);
-blue.onclick = () => click(3);
 
-
-//Início do
+//Início do jogo
 playGame();
